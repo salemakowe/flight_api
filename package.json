@@ -1,0 +1,26 @@
+{
+  "name": "flight_api",
+  "version": "1.0.0",
+  "description": "Zuri node-task for Flight_API",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/salemakowe/flight_api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/salemakowe/flight_api/issues"
+  },
+  "homepage": "https://github.com/salemakowe/flight_api#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
