@@ -4,7 +4,7 @@ const app = express();  //initialise express
 
 // setting up mongoose
 const mongoose = require("mongoose");   //initialise mongoose
-const mongooseUrl = "mongodb://127.0.0.1/27017/flight_api"; //mongoose uri
+const mongooseUrl = "mongodb://127.0.0.1/27017/"; //mongoose uri
 
 
 
@@ -89,22 +89,41 @@ app.get("/flights/:id", (req, res) => {
 
 
 
-// // Create a new collection of Flight
-// Flight.create({
-//     title:  "Flight to Canada",
-//     time:   12.00,
-//     price:  26000,
-//     date:   "2022-08-19"
-// },
-// (err, flight) => {
-//     if(err){
-//         console.log(`There is an error in creating the flight ${err}`)
-//     } else {
-//         console.log(`You have successfully created a flight ticket to Canada ${flight}`)
-//     }
-// }
-// )
+// Updating/Editing Flight
+app.put("/flights/:id", (req, res) => {
+    Flight.findByIdAndUpdate(req.params.id, {
+        time: req.body.time,
+        date: req.body.date,}, (err, flight) => {
+            if(err) {
+                res.status(500).json ({message: err})
+            } else if (!flight) {
+                res.status(404).json ({message: "Flight does not exist"})
+            } else {
+                flight.save((err, savedFlight) => {
+                    if(err) {
+                        res.status(400).json ({message: err})
+                    } else {
+                        res.status(200).json ({message: "Flight updated successfully"})
+                    }
+                })
+            }
+        })
+})
 
+
+
+//Deleting a Flight
+app.delete("/flights/:id", (req, res) => {
+    Flight.findByIdAndDelete(req.params.id, (err, flight) => {
+        if(err){
+            return res.status(500).json ({message: err})
+        } else if (!flight){
+            return res.status(404).json ({message: "No Flight found"})
+        } else {
+            return res.status(200).json ({message: "Flight successfully deleted"})
+        }
+    })
+})
 
 
 app.listen(port, ()=>
