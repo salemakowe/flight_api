@@ -19,6 +19,7 @@
   "homepage": "https://github.com/salemakowe/flight_api#readme",
   "dependencies": {
     "express": "^4.18.1",
+    "mongodb": "^4.7.0",
     "mongoose": "^6.4.0"
   },
   "devDependencies": {
